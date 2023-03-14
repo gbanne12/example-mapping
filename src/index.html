@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Reenie+Beanie&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <div id="page-container">
+
+    <div id="story-container" class="card-container">
+      <div class="inline-block-child">
+        <h2>Story</h2>
+      </div>
+      <div class="inline-block-child">
+        <ul>
+          <li>
+            <span class="story">
+              <p contenteditable="true">As a <br> I want <br> so that</p>
+            </span>
+          </li>
+        </ul>
+      </div>
+      <div id="questions-container" class="questions-container">
+        <div class="inline-block-child">
+          <h2>Questions</h2>
+        </div>
+        <div class="inline-block-child">
+          <ul>
+            <li id="final-question-item">
+              <span class="questions">
+                <p contenteditable="true"></p>
+              </span>
+            </li>
+          </ul>
+        </div>
+        <div class="inline-block-child">
+          <button id="new-question-button" class="button" role="button"> Add</button>
+        </div>
+      </div>
+
+    </div>
+
+    <div id="rules-container" class="card-container">
+      <div name="rules-header" class="inline-block-child">
+        <h2>Rules</h2>
+      </div>
+      <div name="rule-cards" class="inline-block-child">
+        <ul>
+          <li>
+            <span class="rules" ondragover="onDragOver(event);" ondrop="onDrop(event);">
+              <p contenteditable="true" >Rule #1</p>
+            </span>
+          </li>
+          <li>
+            <span class="rules" ondragover="onDragOver(event);" ondrop="onDrop(event);">
+              <p contenteditable="true">Rule #2</p>
+              <a href="#" id="delete-rule-button1" class="close"></a>
+            </span>
+          </li>
+          <li id="final-rule-item">
+            <span class="rules" ondragover="onDragOver(event);" ondrop="onDrop(event);">
+              <p contenteditable="true">Rule #3</p>
+              <a href="#" id="delete-rule-button2" class="close"></a>
+            </span>
+          </li>
+        </ul>
+      </div>
+      <div>
+        <button id="new-rule-button" class="button" role="button"> Add</button>
+      </div>
+    </div>
+
+    <div id="examples-container" class="card-container">
+      <div class="inline-block-child">
+        <h2>Examples</h2>
+      </div>
+      <div class="inline-block-child">
+        <ul>
+          <li id="final-example-item" ondragover="onDragOver(event);" ondrop="onDrop(event);">
+            <span id="final-example-span" class="examples example-draggable" draggable="true"
+              ondragstart="onDragStart(event);">
+              <p contenteditable="true">The one where...</p>
+            </span>
+          </li>
+        </ul>
+      </div>
+      <div>
+        <button id="new-example-button" class="button" role="button"> Add</button>
+      </div>
+    </div>
+</body>
+
+<script type="text/javascript" src="main.js"></script>
+
+</html>
