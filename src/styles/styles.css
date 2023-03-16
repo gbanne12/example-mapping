@@ -13,15 +13,15 @@ body {
 h2 {
   margin: 1.5em;
   padding: 15;
-  font-family: 'Reenie Beanie';
-  font-size: 1.5rem;
+  font-family: 'Permanent Marker', cursive;
+  font-size: 2rem;
   color: hwb(0 30% 70%);
 }
 
 p {
   font-family: 'Reenie Beanie';
-  font-size: 2rem;
-  height: 4em;
+  font-size: 1.6rem;
+  height: 6em;
   overflow: auto;
   word-break: break-word;
 }
@@ -68,14 +68,14 @@ ul li {
 
 
 ul li:nth-child(even) span {
-  transform: rotate(4deg);
+  transform: rotate(1deg);
   position: relative;
   top: 5px;
 
 }
 
 ul li:nth-child(3n) span {
-  transform: rotate(-1deg);
+  transform: rotate(-0.5deg);
   position: relative;
   top: -1px;
 }
@@ -83,7 +83,7 @@ ul li:nth-child(3n) span {
 ul li:nth-child(5n) span {
   transform: rotate(1deg);
   position: relative;
-  top: -2px;
+  top: -1.5px;
 }
 
 ul li span:hover, ul li span:focus {
@@ -112,7 +112,6 @@ ul li span:hover, ul li span:focus {
   border-radius: 0vi;
   border: #91aefd1f;
   border-style: dashed;
-
 }
 
 .questions-container {
@@ -127,6 +126,7 @@ ul li span:hover, ul li span:focus {
   color: #222222;
   cursor: pointer;
   display: inline-block;
+  font-family: 'Permanent Marker', cursive;
   font-size: 16px;
   font-weight: 600;
   line-height: 20px;
@@ -150,9 +150,6 @@ ul li span:hover, ul li span:focus {
   border-color: #000000;
   transform: scale(.96);
 }
-
-
-
 
 .close {
   position: absolute;
