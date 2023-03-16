@@ -8,12 +8,12 @@ export abstract class Note {
         this.locator = locator;
     }
 
-    clear(event: MouseEvent): void {
+    protected clear(event: MouseEvent): void {
         const target = event.target as HTMLElement;
         target.innerText = '';
     }
 
-    delete(elementId: string) {
+    protected delete(elementId: string) {
         const element = document.getElementById(elementId);
         element.parentElement.remove();
     }
@@ -39,7 +39,7 @@ export abstract class Note {
         const generatedId = 'delete-' + className + '-button' + Date.now();
         deleteButton.setAttribute('href', "#")
         deleteButton.setAttribute('id', generatedId)
-        deleteButton.setAttribute('class', "close")
+        deleteButton.setAttribute('class', "delete")
         deleteButton.addEventListener('click', function (event) {
             const eventTarget = (event.target as HTMLElement)
             if (!eventTarget.matches('#' + generatedId)) return

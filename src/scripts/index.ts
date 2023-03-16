@@ -2,71 +2,57 @@ import { RuleNote } from "./notes/RuleNote";
 import { ExampleNote } from "./notes/ExampleNote";
 import { QuestionNote } from "./notes/QuestionNote";
 import { Drag } from "./actions/Drag";
+import { Clear } from "./actions/Clear";
 
 
-// Add notes 
-const addRuleNote = function () {
+// Add notes listeners
+const newRuleButton = document.getElementById('new-rule-button');
+newRuleButton.addEventListener('click', (): void => {
     const ruleNote = new RuleNote();
     ruleNote.add();
-}
-
-const addExampleNote = function () {
-    const exampleNote = new ExampleNote();
-    exampleNote.add();
-}
-
-const addQuestionNote = function () {
-    const questionNote = new QuestionNote();
-    questionNote.add();
-}
-
-const newRuleButton = document.getElementById('new-rule-button');
-newRuleButton.addEventListener('click', addRuleNote);
+});
 
 const newExampleButton = document.getElementById('new-example-button');
-newExampleButton.addEventListener('click', addExampleNote);
+newExampleButton.addEventListener('click', (): void => {
+    const exampleNote = new ExampleNote();
+    exampleNote.add();
+});
 
 
 const newQuestionButton = document.getElementById('new-question-button');
-newQuestionButton.addEventListener('click', addQuestionNote);
+newQuestionButton.addEventListener('click', () => {
+    const questionNote = new QuestionNote();
+    questionNote.add();
+});
 
-// Delete notes
-const removeNote = function (event: MouseEvent) {
-    if (event.target instanceof Element) {
-        event.target.parentElement.remove();
-    }
-}
-
-const deleteButtons = document.getElementsByClassName('close');
+// Delete notes listeners
+const deleteButtons = document.getElementsByClassName('delete');
 for (let i = 0; i < deleteButtons.length; i++) {
-    deleteButtons[i].addEventListener('click', removeNote);
-}
-
-// Clear Notes
-const clearText = function (event: MouseEvent) {
-    if (event.target instanceof Element) {
-        const currentText = event.target.innerHTML;
-        let placeholders = ['Rule #1', 'Rule #2', 'Rule #3', 'The one where...'];
-        if (placeholders.includes(currentText)) {
-            event.target.innerHTML = "";
+    deleteButtons[i].addEventListener('click', (event: MouseEvent): void => {
+        if (event.target instanceof Element) {
+            event.target.parentElement.remove();
         }
-    }
+    });
 }
 
+// Clear notes listeners
 const allParagraphs = document.getElementsByTagName('p');
 for (let i = 0; i < allParagraphs.length; i++) {
-    allParagraphs[i].addEventListener('click', clearText);
+    allParagraphs[i].addEventListener('click', (event: MouseEvent): void => {
+        const clear = new Clear();
+        clear.text(event);
+    });
 }
 
-//Drag and drop
+//Drag and drop listeners
 const drag = new Drag();
-const exampleSpan = document.getElementById('final-example-span');
-exampleSpan.addEventListener('dragstart', drag.start);
+const exampleNote = document.getElementById('final-example-span');
+exampleNote.addEventListener('dragstart', drag.start);
 
-const ruleSpans = document.querySelectorAll('span.rules');
-for (let i = 0; i < ruleSpans.length; i++) {
-    ruleSpans[i].addEventListener('dragover', drag.dragOver);
+const ruleNotes = document.querySelectorAll('span.rules');
+for (let i = 0; i < ruleNotes.length; i++) {
+    ruleNotes[i].addEventListener('dragover', drag.dragOver);
 }
-for (let i = 0; i < ruleSpans.length; i++) {
-    ruleSpans[i].addEventListener('drop', drag.drop);
+for (let i = 0; i < ruleNotes.length; i++) {
+    ruleNotes[i].addEventListener('drop', drag.drop);
 }

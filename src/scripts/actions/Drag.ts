@@ -1,17 +1,17 @@
 export class Drag {
 
-    start(event: DragEvent) {
+    public start(event: DragEvent) {
         if (event.target instanceof Element) {
             event.dataTransfer.setData('text/plain', event.target.id);
         }
     }
 
-    dragOver(event: DragEvent) {
+    public dragOver(event: DragEvent) {
         event.preventDefault();
         event.stopPropagation();
     }
 
-    drop(event: DragEvent) {
+    public drop(event: DragEvent) {
         const draggableElement = document.getElementById(event.dataTransfer.getData('text'));
         if (event.target instanceof Element) {
             let dropzone: Element = event.target;

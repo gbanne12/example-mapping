@@ -151,7 +151,7 @@ ul li span:hover, ul li span:focus {
   transform: scale(.96);
 }
 
-.close {
+.delete {
   position: absolute;
   right: 16px;
   top: 16px;
@@ -159,10 +159,10 @@ ul li span:hover, ul li span:focus {
   height: 16px;
   opacity: 0.3;
 }
-.close:hover {
+.delete:hover {
   opacity: 1;
 }
-.close:before, .close:after {
+.delete:before, .delete:after {
   position: absolute;
   left: 15px;
   content: ' ';
@@ -171,10 +171,10 @@ ul li span:hover, ul li span:focus {
   background-color: #333;
 }
 
-.close:before {
+.delete:before {
   transform: rotate(45deg);
 }
-.close:after {
+.delete:after {
   transform: rotate(-45deg);
 }
 
