@@ -19,9 +19,7 @@ export abstract class Note {
     }
 
     protected add(listItem: Element, span: Element, paragraph: Element, deleteButton: Element): void {
-        // Insert the li & span built by sub-classes
         const targetElement = document.querySelector(this.locator);
-
         targetElement.parentNode.insertBefore(listItem, targetElement.nextSibling);
         listItem.appendChild(span);
         span.appendChild(paragraph)
