@@ -1,6 +1,12 @@
-import { Drag } from "../actions/Drag";
+export interface Note {
+    listItem: HTMLLIElement,
+    span: HTMLSpanElement,
+    paragraph: HTMLParagraphElement,
+    deleteLink: HTMLAnchorElement,
+}
 
-export abstract class Note {
+/** Base class for all post-it notes types */
+export abstract class AbstractNote {
 
     private locator = "";
 
@@ -8,39 +14,39 @@ export abstract class Note {
         this.locator = locator;
     }
 
-    protected clear(event: MouseEvent): void {
+    private clear(event: MouseEvent): void {
         const target = event.target as HTMLElement;
         target.innerText = '';
     }
 
-    protected delete(elementId: string) {
+    private delete(elementId: string) {
         const element = document.getElementById(elementId);
         element.parentElement.remove();
     }
 
-    protected add(listItem: Element, span: Element, paragraph: Element, deleteButton: Element): void {
+    protected add(note: Note): void {
         const targetElement = document.querySelector(this.locator);
+        const listItem = note.listItem;
         targetElement.parentNode.insertBefore(listItem, targetElement.nextSibling);
+        const span = note.span;
         listItem.appendChild(span);
-        span.appendChild(paragraph)
-        span.appendChild(deleteButton);
+        span.appendChild(note.paragraph);
+        span.appendChild(note.deleteLink);
     }
 
-    protected buildParagraph(): HTMLElement {
+    protected buildParagraph(): HTMLParagraphElement {
         const paragraph = document.createElement('p');
         paragraph.setAttribute('contenteditable', 'true');
         return paragraph;
     }
 
-    protected buildDeleteButton(className: string): HTMLElement {
+    protected buildDeleteButton(className: string): HTMLAnchorElement {
         const deleteButton = document.createElement('a');
         const generatedId = 'delete-' + className + '-button' + Date.now();
         deleteButton.setAttribute('href', "#")
         deleteButton.setAttribute('id', generatedId)
         deleteButton.setAttribute('class', "delete")
-        deleteButton.addEventListener('click', function (event) {
-            const eventTarget = (event.target as HTMLElement)
-            if (!eventTarget.matches('#' + generatedId)) return
+        deleteButton.addEventListener('click', function () {
             const element = document.getElementById(generatedId);
             element.parentElement.remove();
         }, false);

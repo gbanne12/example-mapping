@@ -1,10 +1,13 @@
 import { Drag } from '../actions/Drag';
-import {Note} from './Note';
+import { AbstractNote } from './Note';
+import { Note } from './Note';
 
-export class ExampleNote extends Note {
+/** Example post-it notes will contain the examples which demonstrate the rules
+ * Example notes are draggable onto rule notes */
+export class ExampleNote extends AbstractNote {
 
     constructor() {
-        super("#final-example-item");
+        super("#added-example-item");
     }
 
     public add() {
@@ -21,10 +24,17 @@ export class ExampleNote extends Note {
         span.addEventListener('dragstart', drag.start);
 
         const paragraph = super.buildParagraph();
-        
-        const deleteButton = super.buildDeleteButton("examples");
 
-        super.add(li, span, paragraph, deleteButton);
+        const deleteLink = super.buildDeleteButton("examples");
+
+        const exampleNote: Note = {
+            listItem: li,
+            span: span,
+            paragraph: paragraph,
+            deleteLink: deleteLink
+        }
+
+        super.add(exampleNote);
     }
 
 }

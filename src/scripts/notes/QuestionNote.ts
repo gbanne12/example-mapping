@@ -1,9 +1,10 @@
-import { Note } from './Note';
+import { AbstractNote, Note } from './Note';
 
-export class QuestionNote extends Note {
+/** Question post-it notes will contain the user's questions */
+export class QuestionNote extends AbstractNote {
 
     constructor() {
-        super("#final-question-item");
+        super("#added-question-item");
     }
 
     public add() {
@@ -11,8 +12,16 @@ export class QuestionNote extends Note {
         const span = document.createElement('span');
         span.setAttribute('class', "questions");
         const paragraph = super.buildParagraph();
-        const deleteButton = super.buildDeleteButton("rules");
-        super.add(li, span, paragraph, deleteButton);
+        const deleteLink = super.buildDeleteButton("rules");
+        
+        const questionNote: Note = {
+            listItem: li,
+            span: span,
+            paragraph: paragraph,
+            deleteLink: deleteLink
+        }
+
+        super.add(questionNote);
     }
 
 }

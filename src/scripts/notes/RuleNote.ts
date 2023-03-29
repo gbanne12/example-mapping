@@ -1,17 +1,20 @@
 import { Drag } from '../actions/Drag';
-import {Note} from './Note';
+import { AbstractNote, Note } from './Note';
 
-
-export class RuleNote extends Note {
+/** Rule post-it notes will contain the rules that make up the user story
+ * Rule notes provide a target area for the draggable example notes.
+ */
+export class RuleNote extends AbstractNote {
 
     private className: string = "rules";
 
     constructor() {
-        super("#final-rule-item");
+        super("#added-rule-item");
     }
 
     public add() {
         const li = document.createElement('li');
+
         const span = document.createElement('span');
         span.setAttribute('class', this.className);
         span.setAttribute('dragover', 'onDragOver(event);');
@@ -21,10 +24,17 @@ export class RuleNote extends Note {
         span.addEventListener('drop', drag.drop);
 
         const paragraph = super.buildParagraph();
-        
-        const deleteButton = super.buildDeleteButton(this.className);
 
-        super.add(li, span, paragraph, deleteButton);
+        const deleteLink = super.buildDeleteButton(this.className);
+
+        const ruleNote: Note = {
+            listItem: li,
+            span: span,
+            paragraph: paragraph,
+            deleteLink: deleteLink
+        }
+
+        super.add(ruleNote);;
     }
 
 }
